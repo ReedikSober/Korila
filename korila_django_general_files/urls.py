@@ -1,3 +1,4 @@
+
 """
 URL configuration for korila_django_general_files project.
 
@@ -16,7 +17,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from korila_website import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.index, name='home'),
+    path('contact/', views.contact, name='contact'),
+
 ]
