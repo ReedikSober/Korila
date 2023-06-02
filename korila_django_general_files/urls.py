@@ -1,4 +1,3 @@
-
 """
 URL configuration for korila_django_general_files project.
 
@@ -16,12 +15,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from korila_website import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='home'),
-    path('contact/', views.contact, name='contact'),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path('', views.esileht, name='esileht'),
+    path('uldinfo/', views.uldinfo, name='uldinfo'),
+    path('seened/', views.seened, name='seened'),
+    path('marjad/', views.marjad, name='marjad'),
+    path('meditsiinitaimed/', views.meditsiinitaimed, name='meditsiinitaimed'),
+    path('teetaimed/', views.teetaimed, name='teetaimed'),
+    path('varvitaimed/', views.varvitaimed, name='varvitaimed'),
+
+    # path('contact/', views.contact, name='contact'),
 
 ]
