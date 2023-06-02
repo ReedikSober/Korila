@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Sisselogimine
+{% endblock %}
+
+{% block content %}
+    <h2>Sisselogimine</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Sisselogimine</button>
+    </form>
+{% endblock %}
