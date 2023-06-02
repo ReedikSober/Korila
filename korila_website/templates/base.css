@@ -1,0 +1,65 @@
+*{
+    background-color: darkolivegreen;
+    color: floralwhite;
+}
+.center{
+    text-align: center;
+}
+.menu{
+    list-style-type: none;
+    margin: 1px;
+    padding: 2px;
+    overflow: hidden;
+}
+.linav{
+    float: left;
+}
+.linavright{
+    float: right;
+}
+.linava{
+    display: block;
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: gray;
+}
+.active{
+    background-color: gold;
+    color: black;
+}
+.linava:hover{
+    background-color: goldenrod;
+    color: black;
+}
+.lilista:hover{
+    color: gold;
+}
+div.banner{
+    height: 14%;
+    border: whitesmoke solid 5px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.background-image{
+    background: url(https://images.unsplash.com/photo-1590273466070-40c466b4432d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHJlZXMlMjBpbiUyMGZvcmVzdHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80) no-repeat;
+    position: fixed;
+    height: 100%;
+    width: 99%;
+    background-size: cover;
+    box-sizing: border-box;
+    border: 5px solid whitesmoke;
+}
+div.navigation{
+    height: max-content;
+    border: 5px solid whitesmoke;
+    position: sticky;
+}
+.banner{
+    font-size: large;
+    font-family: "Verdana", serif;
+}
+.navigation{
+    font-size: 16px;
+    font-family: "Courier", serif;
+}
