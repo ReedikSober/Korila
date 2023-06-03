@@ -5,5 +5,6 @@ from django.db import models
 
 class Plant(models.Model):
     name = models.CharField(max_length=100)
-    months_to_harvest = models.PositiveIntegerField()
+    harvest_start = models.CharField(max_length=100)
+    harvest_ends = models.CharField(max_length=100)
     picture_url = models.URLField()
