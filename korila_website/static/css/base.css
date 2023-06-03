@@ -5,6 +5,10 @@
 .center{
     text-align: center;
 }
+.transparent{
+    background-color: rgba(240, 248, 255, 0);
+    background-image: linear-gradient(to right, rgba(128, 128, 128, 0), rgba(128, 128, 128, 0),rgba(128, 128, 128, 0.699),rgba(128, 128, 128, 0),rgba(128, 128, 128, 0));
+}
 .menu{
     list-style-type: none;
     margin: 1px;
@@ -36,19 +40,12 @@
     color: gold;
 }
 div.banner{
-    height: 14%;
-    border: whitesmoke solid 5px;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.background-image{
     background: url(https://images.unsplash.com/photo-1590273466070-40c466b4432d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHJlZXMlMjBpbiUyMGZvcmVzdHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80) no-repeat;
-    position: fixed;
-    height: 100%;
-    width: 99%;
+    height: 14%;
+    width: fill;
+    border: whitesmoke solid 5px;
     background-size: cover;
-    box-sizing: border-box;
-    border: 5px solid whitesmoke;
+    background-position: 0px 34%;
 }
 div.navigation{
     height: max-content;
