@@ -1,5 +1,5 @@
 """
-URL configuration for korila_django_general_files project.
+URL configuration for korila project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from korila_website import views
+from website import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
