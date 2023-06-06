@@ -25,7 +25,8 @@
                 {% if user.is_authenticated %}
                     <a class="linava " href="{% url 'logout' %}">Väljalogimine</a>
                 {% else %}
-                    <a class="linava " href="{% url 'login' %}">Sisselogimine</a>
+                    <a class="linava " href="{% url 'signup' %}">Registreeri</a>
+                    <a class="linava " href="{% url 'login' %}">Logi sisse</a>
                 {% endif %}
             </li>
         </ul>
