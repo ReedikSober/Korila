@@ -1,7 +1,8 @@
 from django.contrib import admin
-from .models import Plant
+from .models import Flora, UserSelection
 
 # Register your models here.
 
 
-admin.site.register(Plant)
+admin.site.register(Flora)
+admin.site.register(UserSelection)
