@@ -8,16 +8,5 @@
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Sign Up</button>
-    {% if form.errors %}
-      <div class="alert alert-danger">
-        <ul>
-        {% for field_errors in form.errors.values %}
-          {% for error in field_errors %}
-            <li>{{ error }}</li>
-          {% endfor %}
-        {% endfor %}
-        </ul>
-      </div>
-    {% endif %}
   </form>
 {% endblock %}
