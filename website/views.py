@@ -1,8 +1,8 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-
-from website.models import SignUpForm
+from django.contrib.auth.decorators import login_required
+from website.models import SignUpForm, Flora
 
 
 def esileht(request):
@@ -10,7 +10,7 @@ def esileht(request):
 
 
 def uldinfo(request):
-    return render(request, 'content_files/uldinfo.html')
+    return render(request, 'uldinfo.html')
 
 
 def seened(request):
@@ -46,3 +46,8 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+
+def plant_list(request):
+    plants = Flora.objects.all()
+    return render(request, 'kataloog.html', {'plants': plants})
