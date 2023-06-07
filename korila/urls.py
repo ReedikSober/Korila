@@ -29,6 +29,7 @@ urlpatterns = [
     path('teetaimed/', views.teetaimed, name='teetaimed'),
     path('varvitaimed/', views.varvitaimed, name='varvitaimed'),
     path('signup/', views.signup, name='signup'),
+    path('kataloog/', views.plant_list, name='plant_list'),
     # path('contact/', views.contact, name='contact'),
 
 ]
