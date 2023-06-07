@@ -5,9 +5,10 @@
 {% block content %}
     <h2>Plant List</h2>
     <ul>
-        {% for plant in plants %}
-            <input type="checkbox" name="selected_plants" value="{{ plant.id }}">
-            <li>{{ plant.name }}</li>
-        {% endfor %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
     </ul>
 {% endblock %}
