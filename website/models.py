@@ -5,9 +5,15 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class Flora(models.Model):  # database of plants
+    categories = [
+        ('taim', 'taim'),
+        ('seen', 'seen'),
+        ('mari', 'mari'),
+    ]
     name = models.CharField(max_length=100)
     harvest_start = models.DateField()
     harvest_end = models.DateField()
+    plant_category = models.CharField(max_length=50, choices=categories)
     picture_url = models.URLField()
 
     def __str__(self):
