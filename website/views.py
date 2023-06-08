@@ -22,16 +22,8 @@ def marjad(request):
     return render(request, 'content_files/marjad.html')
 
 
-def meditsiinitaimed(request):
-    return render(request, 'content_files/meditsiinitaimed.html')
-
-
-def teetaimed(request):
-    return render(request, 'content_files/teetaimed.html')
-
-
-def varvitaimed(request):
-    return render(request, 'content_files/varvitaimed.html')
+def taimed(request):
+    return render(request, 'content_files/taimed.html')
 
 
 def signup(request):
