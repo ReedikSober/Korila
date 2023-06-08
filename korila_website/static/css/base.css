@@ -60,3 +60,24 @@ div.navigation{
     font-size: 16px;
     font-family: "Courier", serif;
 }
+div.row{
+
+}
+div.leftrow{
+    background: url("https://img.freepik.com/free-photo/top-view-natural-medicinal-spices-herbs_23-2148776497.jpg") no-repeat;
+    float: left;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    width: 15%;
+    padding: 10px 20px;
+    border: 3px whitesmoke solid;
+    position: absolute;
+}
+div.rigthrow{
+    float:right;
+    width: 50%;
+}
+div.contentrow{
+    float: left;
+}
