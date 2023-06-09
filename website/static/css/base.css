@@ -40,12 +40,11 @@
     color: gold;
 }
 div.banner{
-    background: url(https://images.unsplash.com/photo-1590273466070-40c466b4432d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHJlZXMlMjBpbiUyMGZvcmVzdHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80) no-repeat;
     height: 14%;
-    width: fill;
+    width: 100%;
     border: whitesmoke solid 5px;
     background-size: cover;
-    background-position: 0px 34%;
+    background: url(https://images.unsplash.com/photo-1590273466070-40c466b4432d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHJlZXMlMjBpbiUyMGZvcmVzdHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80) no-repeat 0 34%;
 }
 div.navigation{
     height: max-content;
