@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load custom_filters %}
+
+{% block content %}
+    <table>
+        <thead>
+        <tr>
+            <th>January</th>
+            <th>February</th>
+            <th>March</th>
+            <th>April</th>
+            <th>May</th>
+            <th>June</th>
+            <th>July</th>
+            <th>August</th>
+            <th>September</th>
+            <th>October</th>
+            <th>November</th>
+            <th>December</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for flora in selected_flora %}
+            <tr>
+                {% for month in 12|get_range %}
+                    {% with index=month|add:"1" %}
+                        {% if flora.harvest_start and flora.harvest_end %}
+                            {% if index >= flora.harvest_start.month and index <= flora.harvest_end.month %}
+                                <td>{{ flora.name }}</td>
+                            {% else %}
+                                <td></td>
+                            {% endif %}
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="12">No selected flora found.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
