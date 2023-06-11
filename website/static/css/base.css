@@ -1,5 +1,7 @@
 *{
+    /*
     background-color: darkolivegreen;
+     */
     color: floralwhite;
 }
 .center{
@@ -39,7 +41,9 @@
 .lilista:hover{
     color: gold;
 }
+
 div.banner{
+    background-color: darkolivegreen;
     background: url(https://images.unsplash.com/photo-1590273466070-40c466b4432d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHJlZXMlMjBpbiUyMGZvcmVzdHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80) no-repeat;
     height: 14%;
     width: fill;
@@ -48,6 +52,7 @@ div.banner{
     background-position: 0px 34%;
 }
 div.navigation{
+    background-color: darkolivegreen;
     height: max-content;
     border: 5px solid whitesmoke;
     position: sticky;
@@ -56,7 +61,34 @@ div.navigation{
     font-size: large;
     font-family: "Verdana", serif;
 }
-.navigation{
-    font-size: 16px;
-    font-family: "Courier", serif;
+.sidebar{
+    margin-left: 2px;
+    height: 100vh;
+    width: 17%;
+    float: left;
+    background: url(https://img.freepik.com/free-photo/top-view-natural-medicinal-spices-herbs_23-2148776497.jpg);
+    background-size: cover;
+    border: 3px whitesmoke solid;
+}
+div.text{
+    font-size: large;
+    margin-top: 20%;
+    margin-bottom: 5%;
+    color: black;
+    font-family: "Verdana", serif;
+    text-shadow: grey;
+    font-weight: bold;
+}
+.container{
+    background-color: darkolivegreen;
+    border: 3px whitesmoke solid;
+    margin-left: 1px;
+    height: 100vh;
+    width: 82%;
+    float:left;
+}
+footer{
+    float: left;
+    background-color: whitesmoke;
+    width: 99%;
 }
