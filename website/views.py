@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from website.forms import UserSelectionForm
 from website.models import SignUpForm, Flora, UserSelection
+from django.http import JsonResponse
 
 
 def esileht(request):
@@ -59,3 +60,24 @@ def plant_list(request):
         form = UserSelectionForm(initial=initial_data)
 
     return render(request, 'kataloog.html', {'plants': plants, 'form': form})
+
+
+def search_flora(request):
+    search_input = request.GET.get('searchInput')
+
+    # Perform the search query
+    flora_objects = Flora.objects.filter(name__icontains=search_input)
+
+    # Create a list of dictionaries containing the data for each flora object
+    flora_data = []
+    for flora in flora_objects:
+        flora_data.append({
+            'name': flora.name,
+            'harvest_start': flora.harvest_start.strftime('%Y-%m-%d'),
+            'harvest_end': flora.harvest_end.strftime('%Y-%m-%d'),
+            'plant_category': flora.plant_category,
+            'picture_url': flora.picture_url,
+        })
+
+    # Return the flora data as a JSON response
+    return JsonResponse(flora_data, safe=False)
