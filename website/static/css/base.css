@@ -1,94 +1,147 @@
-*{
-    /*
+* {
+
     background-color: darkolivegreen;
-     */
+
     color: floralwhite;
 }
-.center{
+
+.center {
     text-align: center;
 }
-.transparent{
+
+.transparent {
     background-color: rgba(240, 248, 255, 0);
-    background-image: linear-gradient(to right, rgba(128, 128, 128, 0), rgba(128, 128, 128, 0),rgba(128, 128, 128, 0.699),rgba(128, 128, 128, 0),rgba(128, 128, 128, 0));
+    background-image: linear-gradient(to right, rgba(128, 128, 128, 0), rgba(128, 128, 128, 0), rgba(128, 128, 128, 0.699), rgba(128, 128, 128, 0), rgba(128, 128, 128, 0));
 }
-.menu{
+
+.menu {
     list-style-type: none;
     margin: 1px;
     padding: 2px;
     overflow: hidden;
 }
-.linav{
+
+.linav {
     float: left;
 }
-.linavright{
+
+.linavright {
     float: right;
 }
-.linava{
+
+.linava {
     display: block;
     text-align: center;
     padding: 10px 20px;
     text-decoration: none;
     background-color: gray;
 }
-.active{
+
+.active {
     background-color: gold;
     color: black;
 }
-.linava:hover{
+
+.linava:hover {
     background-color: goldenrod;
     color: black;
 }
-.lilista:hover{
+
+.lilista:hover {
     color: gold;
 }
 
-div.banner{
+div.banner {
     background-color: darkolivegreen;
     background: url(https://images.unsplash.com/photo-1590273466070-40c466b4432d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHJlZXMlMjBpbiUyMGZvcmVzdHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80) no-repeat;
     height: 14%;
-    width: fill;
-    border: whitesmoke solid 5px;
+    width: 99%;
+    border: whitesmoke solid 3px;
     background-size: cover;
-    background-position: 0px 34%;
+    background-position: 0 34%;
 }
-div.navigation{
+
+div.navigation {
     background-color: darkolivegreen;
     height: max-content;
-    border: 5px solid whitesmoke;
+    border: 3px solid whitesmoke;
     position: sticky;
+    margin-right: 6px;
 }
-.banner{
+
+.banner {
     font-size: large;
     font-family: "Verdana", serif;
 }
-.sidebar{
-    margin-left: 2px;
+
+.container {
+    background-color: darkolivegreen;
+    border: 3px whitesmoke solid;
+    margin-left: 0px;
     height: 100vh;
+    width: 99%;
+    display: flex;
+}
+
+.sidebar {
     width: 17%;
-    float: left;
     background: url(https://img.freepik.com/free-photo/top-view-natural-medicinal-spices-herbs_23-2148776497.jpg);
     background-size: cover;
     border: 3px whitesmoke solid;
 }
-div.text{
+
+div.text {
     font-size: large;
     margin-top: 20%;
     margin-bottom: 5%;
-    color: black;
+    color: whitesmoke;
     font-family: "Verdana", serif;
     text-shadow: grey;
     font-weight: bold;
 }
-.container{
-    background-color: darkolivegreen;
-    border: 3px whitesmoke solid;
-    margin-left: 1px;
-    height: 100vh;
-    width: 82%;
-    float:left;
-}
-footer{
+
+footer {
     float: left;
-    background-color: whitesmoke;
+    background-color: darkolivegreen;
     width: 99%;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+#popup {
+    display: none;
+    /* Add other styles as needed */
+}
+.image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.image-container img {
+  max-width: 50%;
+  max-height: 50%;
+  object-fit: contain;
+}
+
+.center {
+    text-align: center;
 }

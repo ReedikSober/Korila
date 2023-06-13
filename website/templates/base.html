@@ -8,52 +8,55 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
 </head>
 <body>
-    <div class="banner">
-        <h1 class="center transparent">Korila</h1>
-    </div>                     <!-- Navigation bar -->
-    <div class="navigation">
-        <ul class="menu">
-            <li class="linav"><a class="linava" href="/">Esileht</a></li>
-            <li class="linav"><a class="linava" href="/uldinfo">Üldinfo</a></li>
-            <li class="linav"><a class="linava" href="/kataloog">Kataloog</a></li>
-            <li class="linav"><a class="linava" href="/kalender">Kalender</a></li>
-            <li class="linav"><a class="linava" href="/taimed">Taimed</a></li>
-            <li class="linav"><a class="linava" href="/marjad">Marjad</a></li>
-            <li class="linav"><a class="linava" href="/seened">Seened</a></li>
-            <!-- User log-in and log-out changeable text -->
-            <li class="linavright">
-                {% if user.is_authenticated %}
-                    <a class="linava " href="{% url 'logout' %}">Logi välja</a>
-                {% else %}
-                    <a class="linava " href="{% url 'signup' %}">Registreeri</a>
-                    <a class="linava " href="{% url 'login' %}">Logi sisse</a>
-                {% endif %}
-            </li>
-        </ul>
-    </div>
+<div class="banner">
+    <h1 class="center transparent">Korila</h1>
+</div>                     <!-- Navigation bar -->
+<div class="navigation">
+    <ul class="menu">
+        <li class="linav"><a class="linava" href="/">Esileht</a></li>
+        <li class="linav"><a class="linava" href="/uldinfo">Üldinfo</a></li>
+        <li class="linav"><a class="linava" href="/kataloog">Kataloog</a></li>
+        <li class="linav"><a class="linava" href="/kalender">Kalender</a></li>
+        <li class="linav"><a class="linava" href="/taimed">Taimed</a></li>
+        <li class="linav"><a class="linava" href="/marjad">Marjad</a></li>
+        <li class="linav"><a class="linava" href="/seened">Seened</a></li>
+        <!-- User log-in and log-out changeable text -->
+        <li class="linavright">
+            {% if user.is_authenticated %}
+                <a class="linava " href="{% url 'logout' %}">Logi välja</a>
+            {% else %}
+                <a class="linava " href="{% url 'signup' %}">Registreeri</a>
+                <a class="linava " href="{% url 'login' %}">Logi sisse</a>
+            {% endif %}
+        </li>
+    </ul>
+</div>
+<div class="container">
     <div class="sidebar">
         <div class="text transparent center">
-            Sisesta otsitava taimenimi
+            Sisesta otsitava taime nimi
         </div>
         <div class="searchbar center">
-            <label>
-                <input type="text" placeholder="Search..." required>
-                <button type="submit">Otsi</button>
+            <label for="searchInput">
+                <input id="searchInput" type="text" placeholder="Search..." required>
             </label>
+            <button id="searchButton" type="button">Otsi</button>
         </div>
     </div>
-    <div class="container">
-        <main>
-            {% block content %}
-                <!-- Main content comes here -->
-                Am I a visible sentence on a page?
-            {% endblock %}
-        </main>
+    <main>
+        {% block content %}
+            <!-- Main content comes here -->
+            Am I a visible sentence on a page?
+        {% endblock %}
+    </main>
+    <div id="popup" class="popup">
+        <div id="popupContent" class="popup-content"></div>
     </div>
-    <footer>
+</div>
+<footer>
     2023 Korila
-    </footer>
+</footer>
+<script src="{% static 'js/base.js' %}"></script>
+
 </body>
 </html>
-
-
