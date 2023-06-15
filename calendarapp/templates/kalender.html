@@ -3,43 +3,51 @@
 {% load custom_filters %}
 
 {% block content %}
+    <style>
+        table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+
+        th {
+            border-right: 1px solid black;
+        }
+
+        th:last-child {
+            border-right: none;
+        }
+
+        td:nth-child(4n) {
+            border-right: 1px solid black;
+        }
+
+        td:last-child {
+            border-right: none;
+        }
+    </style>
+
     <table>
         <thead>
         <tr>
-            <th>January</th>
-            <th>February</th>
-            <th>March</th>
-            <th>April</th>
-            <th>May</th>
-            <th>June</th>
-            <th>July</th>
-            <th>August</th>
-            <th>September</th>
-            <th>October</th>
-            <th>November</th>
-            <th>December</th>
+            {% for month_number in 1|get_range:13 %}
+                <th colspan="4">{{ month_number|month_name }}</th>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for month_number in 1|get_range:13 %}
+                {% for week_number in 1|get_range:5 %}
+                    <td>{{ week_number }}</td>
+                {% endfor %}
+            {% endfor %}
         </tr>
         </thead>
         <tbody>
         {% for flora in selected_flora %}
             <tr>
-                {% for month in 12|get_range %}
-                    {% with index=month|add:"1" %}
-                        {% if flora.harvest_start and flora.harvest_end %}
-                            {% if index >= flora.harvest_start.month and index <= flora.harvest_end.month %}
-                                <td>{{ flora.name }}</td>
-                            {% else %}
-                                <td></td>
-                            {% endif %}
-                        {% else %}
-                            <td></td>
-                        {% endif %}
-                    {% endwith %}
+                {% for _ in 1|get_range:49 %}
+                    <td>+</td>
                 {% endfor %}
-            </tr>
-        {% empty %}
-            <tr>
-                <td colspan="12">No selected flora found.</td>
             </tr>
         {% endfor %}
         </tbody>

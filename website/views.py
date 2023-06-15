@@ -73,11 +73,17 @@ def search_flora(request):
     for flora in flora_objects:
         flora_data.append({
             'name': flora.name,
-            'harvest_start': flora.harvest_start.strftime('%Y-%m-%d'),
-            'harvest_end': flora.harvest_end.strftime('%Y-%m-%d'),
+            'harvest_start_month': flora.harvest_start_month,
+            'harvest_start_week': flora.harvest_start.week,
+            'harvest_end_month': flora.harvest_end.month,
+            'harvest_end_week': flora.harvest_end.week,
             'plant_category': flora.plant_category,
+            'plant_description': flora.description,
             'picture_url': flora.picture_url,
         })
 
     # Return the flora data as a JSON response
     return JsonResponse(flora_data, safe=False)
+
+
+#
