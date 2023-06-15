@@ -74,9 +74,9 @@ def search_flora(request):
         flora_data.append({
             'name': flora.name,
             'harvest_start_month': flora.harvest_start_month,
-            'harvest_start_week': flora.harvest_start.week,
-            'harvest_end_month': flora.harvest_end.month,
-            'harvest_end_week': flora.harvest_end.week,
+            'harvest_start_week': flora.harvest_start_week,
+            'harvest_end_month': flora.harvest_end_month,
+            'harvest_end_week': flora.harvest_end_week,
             'plant_category': flora.plant_category,
             'plant_description': flora.description,
             'picture_url': flora.picture_url,
