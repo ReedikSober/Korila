@@ -32,8 +32,10 @@ function displayPopup(data) {
         nameElement.classList.add("center"); // Add center class
 
         const harvestElement = document.createElement("p");
-        const startMonth = new Date(flora.harvest_start_month).toLocaleString('default', {month: 'long'});
-        const endMonth = new Date(flora.harvest_end_month).toLocaleString('default', {month: 'long'});
+        const months = [ "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December" ];
+        const startMonth = months[JSON.stringify(flora.harvest_start_month)];
+        const endMonth = months[JSON.stringify(flora.harvest_end_month)];
         harvestElement.textContent = startMonth + " - " + endMonth;
         harvestElement.classList.add("center"); // Add center class
 
