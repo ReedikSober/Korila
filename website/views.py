@@ -97,6 +97,7 @@ def add_to_calendar(request):
         user_selection.save()
         return JsonResponse({'success': True, 'message': 'Flora added to calendar'})
 
+
 def remove_from_calendar(request):
     if request.method == 'POST':
         flora_id = request.POST.get('floraId')

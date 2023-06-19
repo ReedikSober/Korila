@@ -29,9 +29,11 @@ document.getElementById("searchButton").addEventListener("click", function () {
 });
 
 function displayPopup(data) {
-    const popupContent = document.getElementById("popupContent");
-    popupContent.innerHTML = ""; // Clear previous content
 
+    const popupContent = document.getElementById("popupContent");
+    popupContent.style.height = "";
+    popupContent.style.overflowY = "";
+    popupContent.innerHTML = ""; // Clear previous content
     if (data.length === 0) {
         const noResultsElement = document.createElement("p");
         noResultsElement.textContent = "Cannot find the desired object!";
@@ -93,10 +95,10 @@ function displayPopup(data) {
     const popup = document.getElementById("popup");
     popup.style.display = "block";
 
-    // Adjust the height and enable scrolling if necessary
     const maxHeight = "450px"; // Set the maximum height here
     const contentHeight = popupContent.scrollHeight;
-    popupContent.style.height = contentHeight > parseInt(maxHeight, 10) ? maxHeight : "none";
+    // Set new height and overflow based on content height
+    popupContent.style.height = contentHeight > parseInt(maxHeight, 10) ? maxHeight : "auto";
     popupContent.style.overflowY = contentHeight > parseInt(maxHeight, 10) ? "scroll" : "visible";
 
 
@@ -119,7 +121,6 @@ function closePopup(event) {
 
     if (popup.style.display === "block" && !popupContent.contains(event.target) && !searchInput.contains(event.target)) {
         popup.style.display = "none";
-        location.reload(); // Refresh the page
     }
 }
 
@@ -140,6 +141,7 @@ function addToCalendar(flora) {
             if (xhr.status === 200) {
                 console.log("Flora added to calendar");
                 showSuccessMessage("Added to calendar"); // Display success message
+                refreshTable()
                 // Update the UI or perform any other necessary actions
             } else {
                 console.error("Error: " + xhr.status);
@@ -167,7 +169,7 @@ function removeFromCalendar(flora) {
             if (xhr.status === 200) {
                 console.log("Flora removed from calendar");
                 showSuccessMessage("Removed from calendar"); // Display success message
-
+                refreshTable()
                 // Update the UI or perform any other necessary actions
             } else {
                 console.error("Error: " + xhr.status);
@@ -205,3 +207,26 @@ const successPopupHTML = `
 `;
 document.body.insertAdjacentHTML("beforeend", successPopupHTML);
 
+const table = document.getElementById("calendarTable");
+
+function refreshTable() {
+    // Make an AJAX request to retrieve the updated table content
+    const xhr = new XMLHttpRequest();
+    const url = "/refresh-table/";  // Replace with the appropriate URL for refreshing the table content
+    xhr.open("GET", url, true);
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                const response = xhr.responseText;
+                const updatedTableContent = response;
+                const table = document.getElementById("calendarTable");
+                table.innerHTML = updatedTableContent;
+            } else {
+                console.error("Error: " + xhr.status);
+            }
+        }
+    };
+
+    xhr.send();
+}
