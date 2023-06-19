@@ -3,7 +3,7 @@
 {% load custom_filters %}
 
 {% block content %}
-    <table>
+    <table id="calendarTable">
         <thead>
         <tr>
             {% for month_number in 1|get_range:13 %}
