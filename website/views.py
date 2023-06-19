@@ -66,7 +66,8 @@ def search_flora(request):
     search_input = request.GET.get('searchInput')
 
     # Perform the search query
-    flora_objects = Flora.objects.filter(name__icontains=search_input)
+    flora_objects = Flora.objects.filter(name__icontains=search_input) | Flora.objects.filter(
+        plant_category__exact=search_input)
 
     # Create a list of dictionaries containing the data for each flora object
     flora_data = []
