@@ -66,29 +66,50 @@ function displayPopup(data) {
             const imageElement = document.createElement("img");
             imageElement.src = flora.picture_url;
 
+            const addToCalendarButton = document.createElement("button");
+            addToCalendarButton.textContent = "Add";
+            addToCalendarButton.addEventListener("click", function () {
+                addToCalendar(flora);
+            });
+
+            const removeFromCalendarButton = document.createElement("button");
+            removeFromCalendarButton.textContent = "Remove";
+            removeFromCalendarButton.addEventListener("click", function () {
+                removeFromCalendar(flora);
+            });
+
+            const bottomImageContainer = document.createElement("div");
+            bottomImageContainer.className = "bottomimage-container";
+
+            const bottomImageElement = document.createElement("img");
+            bottomImageElement.src = "https://static.vecteezy.com/system/resources/thumbnails/020/434/480/small/cute-floral-page-divider-doodle-illustrations-simple-flower-border-line-art-vector.jpg";
+            bottomImageElement.style.width = "100%"; // Fill the container
+            bottomImageElement.style.height = "100%"; // Fill the container
+            bottomImageElement.style.objectFit = "cover"; // Hide the out-of-container portion
+
+
+
+// Apply styles to the container
+            bottomImageContainer.style.width = "100%";
+            bottomImageContainer.style.height = "8%";
+            bottomImageContainer.style.display = "flex";
+            bottomImageContainer.style.justifyContent = "center";
+            bottomImageContainer.style.alignItems = "center";
+            bottomImageContainer.style.backgroundColor = "white"; // Set the background color to white
+
+
             // Add image element to the container
             imageContainer.appendChild(imageElement);
+            bottomImageContainer.appendChild(bottomImageElement)
 
             // Add elements to the popup content
             popupContent.appendChild(nameElement);
             popupContent.appendChild(harvestElement);
             popupContent.appendChild(description);
             popupContent.appendChild(imageContainer);
-
-            // Create "Add to calendar" button
-            const addToCalendarButton = document.createElement("button");
-            addToCalendarButton.textContent = "Add";
-            addToCalendarButton.addEventListener("click", function () {
-                addToCalendar(flora);
-            });
             popupContent.appendChild(addToCalendarButton);
-            // Create "Remove from calendar" button
-            const removeFromCalendarButton = document.createElement("button");
-            removeFromCalendarButton.textContent = "Remove";
-            removeFromCalendarButton.addEventListener("click", function () {
-                removeFromCalendar(flora);
-            });
             popupContent.appendChild(removeFromCalendarButton);
+            popupContent.appendChild(bottomImageContainer);
         });
     }
     // Display the pop-up
