@@ -78,7 +78,7 @@ def search_flora(request):
             'harvest_end_month': flora.harvest_end_month,
             'harvest_end_week': flora.harvest_end_week,
             'plant_category': flora.plant_category,
-            'plant_description': flora.description,
+            'description': flora.description,
             'picture_url': flora.picture_url,
         })
 

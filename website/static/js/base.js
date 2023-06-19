@@ -25,34 +25,49 @@ function displayPopup(data) {
     const popupContent = document.getElementById("popupContent");
     popupContent.innerHTML = ""; // Clear previous content
 
-    data.forEach(function (flora) {
-        // Create elements to display the retrieved data
-        const nameElement = document.createElement("p");
-        nameElement.textContent = flora.name;
-        nameElement.classList.add("center"); // Add center class
+    if (data.length === 0) {
+        const noResultsElement = document.createElement("p");
+        noResultsElement.textContent = "Cannot find the desired object!";
+        noResultsElement.classList.add("center"); // Add center class
 
-        const harvestElement = document.createElement("p");
-        const months = [ "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December" ];
-        const startMonth = months[JSON.stringify(flora.harvest_start_month)];
-        const endMonth = months[JSON.stringify(flora.harvest_end_month)];
-        harvestElement.textContent = startMonth + " - " + endMonth;
-        harvestElement.classList.add("center"); // Add center class
+        // Add the "Cannot find the desired object!" element to the popup content
+        popupContent.appendChild(noResultsElement);
+    } else {
+        data.forEach(function (flora) {
+            // Create elements to display the retrieved data
+            const nameElement = document.createElement("p");
+            nameElement.textContent = flora.name;
+            nameElement.classList.add("center"); // Add center class
 
-        const imageContainer = document.createElement("div");
-        imageContainer.className = "image-container";
+            const harvestElement = document.createElement("p");
+            const months = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"];
+            const startMonth = months[JSON.stringify(flora.harvest_start_month)];
+            const endMonth = months[JSON.stringify(flora.harvest_end_month)];
+            harvestElement.textContent = startMonth + " - " + endMonth;
+            harvestElement.classList.add("center"); // Add center class
 
-        const imageElement = document.createElement("img");
-        imageElement.src = flora.picture_url;
+            const description = document.createElement("p");
+            description.textContent = flora.description
+            description.classList.add("center"); // Add center class
 
-        // Add image element to the container
-        imageContainer.appendChild(imageElement);
 
-        // Add elements to the popup content
-        popupContent.appendChild(nameElement);
-        popupContent.appendChild(harvestElement);
-        popupContent.appendChild(imageContainer);
-    });
+            const imageContainer = document.createElement("div");
+            imageContainer.className = "image-container";
+
+            const imageElement = document.createElement("img");
+            imageElement.src = flora.picture_url;
+
+            // Add image element to the container
+            imageContainer.appendChild(imageElement);
+
+            // Add elements to the popup content
+            popupContent.appendChild(nameElement);
+            popupContent.appendChild(harvestElement);
+            popupContent.appendChild(description);
+            popupContent.appendChild(imageContainer);
+        });
+    }
 
     // Display the pop-up
     const popup = document.getElementById("popup");

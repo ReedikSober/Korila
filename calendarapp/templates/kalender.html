@@ -7,7 +7,7 @@
         table {
             width: 100%;
             table-layout: fixed;
-            border-collapse: collapse;
+            border-collapse: separate;
         }
 
         th {
@@ -37,7 +37,8 @@
         <tr>
             {% for month_number in 1|get_range:13 %}
                 {% for week_number in 1|get_range:5 %}
-                    <td>{{ week_number }}</td>
+                    {#                    <td>{{ week_number }}</td>#}
+                    <td>-</td>
                 {% endfor %}
             {% endfor %}
         </tr>
@@ -45,8 +46,31 @@
         <tbody>
         {% for flora in selected_flora %}
             <tr>
-                {% for _ in 1|get_range:49 %}
-                    <td>+</td>
+                {% before_range flora.harvest_start_month flora.harvest_start_week as before_range %}
+                {% for i in before_range %}
+                    <td></td>
+                {% endfor %}
+
+
+                {% flora_object_range flora.harvest_start_month flora.harvest_start_week flora.harvest_end_month flora.harvest_end_week as object_range %}
+                {% flora_object_namespan flora.harvest_start_month flora.harvest_start_week flora.harvest_end_month flora.harvest_end_week as namespan %}
+
+                {% for i in object_range %}
+                    {% if i == namespan %}
+                        <td style="border-top: 1px solid black; border-bottom: 1px solid black; text-align: center; white-space: nowrap; overflow: visible; position: relative; display: flex; justify-content: center; align-items: center;">
+                            {{ flora.name }}
+                        </td>
+                    {% else %}
+                        <td {% if forloop.last %}style="border-right: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black;" {% endif %}
+                            {% if forloop.first %}style="border-left: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black;" {% endif %}
+                            style="border-top: 1px solid black; border-bottom: 1px solid black;">
+                        </td>
+                    {% endif %}
+                {% endfor %}
+
+                {% after_range flora.harvest_end_month flora.harvest_end_week as after_range %}
+                {% for i in after_range %}
+                    <td></td>
                 {% endfor %}
             </tr>
         {% endfor %}
