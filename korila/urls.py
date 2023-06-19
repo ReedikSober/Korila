@@ -16,6 +16,9 @@ urlpatterns = [
     path('kataloog/', views.plant_list, name='plant_list'),
     path('kalender/', cviews.user_flora, name='user_flora'),
     path('search/', views.search_flora, name='search_flora'),
+    path('add-to-calendar/', views.add_to_calendar, name='add-to-calendar'),
+    path('remove-from-calendar/', views.remove_from_calendar, name='remove-from-calendar'),
+
     # path('contact/', views.contact, name='contact'),
 
 ]

@@ -129,17 +129,51 @@ footer {
     display: none;
     /* Add other styles as needed */
 }
+
 .image-container {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .image-container img {
-  max-width: 50%;
-  max-height: 50%;
-  object-fit: contain;
+    max-width: 50%;
+    max-height: 50%;
+    object-fit: contain;
 }
 
 .center {
     text-align: center;
+}
+
+.success-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+}
+
+th {
+    border-right: 1px solid black;
+}
+
+th:last-child {
+    border-right: none;
+}
+
+td:nth-child(4n) {
+    border-right: 1px solid black;
+}
+
+td:last-child {
+    border-right: none;
 }

@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from website.forms import UserSelectionForm
 from website.models import SignUpForm, Flora, UserSelection
@@ -72,6 +72,7 @@ def search_flora(request):
     flora_data = []
     for flora in flora_objects:
         flora_data.append({
+            'id': flora.id,
             'name': flora.name,
             'harvest_start_month': flora.harvest_start_month,
             'harvest_start_week': flora.harvest_start_week,
@@ -86,4 +87,22 @@ def search_flora(request):
     return JsonResponse(flora_data, safe=False)
 
 
-#
+def add_to_calendar(request):
+    if request.method == 'POST':
+        flora_id = request.POST.get('floraId')
+        user = request.user
+        user_selection = get_object_or_404(UserSelection, user=user)
+        flora = get_object_or_404(Flora, id=flora_id)
+        user_selection.selected_plants.add(flora)
+        user_selection.save()
+        return JsonResponse({'success': True, 'message': 'Flora added to calendar'})
+
+def remove_from_calendar(request):
+    if request.method == 'POST':
+        flora_id = request.POST.get('floraId')
+        user = request.user
+        user_selection = get_object_or_404(UserSelection, user=user)
+        flora = get_object_or_404(Flora, id=flora_id)
+        user_selection.selected_plants.remove(flora)
+        user_selection.save()
+        return JsonResponse({'success': True, 'message': 'Flora removed from calendar'})
