@@ -3,30 +3,6 @@
 {% load custom_filters %}
 
 {% block content %}
-    <style>
-        table {
-            width: 100%;
-            table-layout: fixed;
-            border-collapse: separate;
-        }
-
-        th {
-            border-right: 1px solid black;
-        }
-
-        th:last-child {
-            border-right: none;
-        }
-
-        td:nth-child(4n) {
-            border-right: 1px solid black;
-        }
-
-        td:last-child {
-            border-right: none;
-        }
-    </style>
-
     <table>
         <thead>
         <tr>
@@ -76,4 +52,5 @@
         {% endfor %}
         </tbody>
     </table>
+
 {% endblock %}
