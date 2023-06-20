@@ -1,4 +1,6 @@
+
 * {
+    box-sizing: border-box;
 
     background-color: darkolivegreen;
 
@@ -26,7 +28,10 @@
 }
 
 .linavright {
-    float: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .linava {
@@ -51,17 +56,22 @@
     color: gold;
 }
 
+.banner-link {
+    text-decoration: none;
+    color: floralwhite;
+}
+
 div.banner {
-    height: 14%;
     width: 99%;
     border: whitesmoke solid 3px;
-    background-size: cover;
     background: darkolivegreen url(https://images.unsplash.com/photo-1590273466070-40c466b4432d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHJlZXMlMjBpbiUyMGZvcmVzdHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80) no-repeat 0 34%;
+    background-size: cover;
 }
 
 div.navigation {
     background-color: darkolivegreen;
-    height: max-content;
+    height: auto;
+    width: 99%;
     border: 3px solid whitesmoke;
     position: sticky;
     margin-right: 6px;
