@@ -177,3 +177,18 @@ td:nth-child(4n) {
 td:last-child {
     border-right: none;
 }
+
+.bottomimage-container {
+    width: 100%;
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.bottomimage-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
