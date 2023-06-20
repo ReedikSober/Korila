@@ -4,6 +4,7 @@ document.getElementById("searchButton").addEventListener("click", handleSearchBu
 document.addEventListener("click", closePopupOnClick);
 document.addEventListener("keydown", closePopupOnEscape);
 
+
 // Functions
 function handleSearchInput(event) {
     if (event.key === "Enter") {
@@ -41,6 +42,8 @@ function closePopupOnClick(event) {
 
     if (popup.style.display === "block" && !popupContent.contains(event.target) && !searchInput.contains(event.target)) {
         popup.style.display = "none";
+        reactivateFloraLinkClick();
+        reactivateFloraLinkHover();
     }
 }
 
@@ -252,4 +255,88 @@ function resetPopupContent() {
     popupContent.innerHTML = "";
     popupContent.style.height = "auto";
     popupContent.style.overflowY = "visible";
+}
+
+// Add event listener to flora links
+const floraLinks = document.getElementsByClassName("flora-link");
+for (let i = 0; i < floraLinks.length; i++) {
+    floraLinks[i].addEventListener("click", handleFloraLinkClick);
+    floraLinks[i].addEventListener("mouseover", handleFloraLinkHover);
+
+}
+
+// Function to handle flora link click
+function handleFloraLinkClick(event) {
+    event.preventDefault();
+    const searchInputValue = event.target.textContent;
+    const xhr = new XMLHttpRequest();
+    const url = "/search/";
+    const params = "searchInput=" + searchInputValue;
+    xhr.open("GET", url + "?" + params, true);
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText);
+                displayPopup(response);
+            } else {
+                console.error("Error: " + xhr.status);
+            }
+        }
+    };
+
+    xhr.send();
+}
+
+function reactivateFloraLinkClick() {
+    const floraLinks = document.getElementsByClassName("flora-link");
+    for (let i = 0; i < floraLinks.length; i++) {
+        floraLinks[i].addEventListener("click", handleFloraLinkClick);
+    }
+}
+
+function reactivateFloraLinkHover() {
+    const floraLinks = document.getElementsByClassName("flora-link");
+    for (let i = 0; i < floraLinks.length; i++) {
+        floraLinks[i].addEventListener("mouseover", handleFloraLinkHover);
+    }
+}
+
+function handleFloraLinkHover(event) {
+    const floraName = event.target.textContent;
+    const floraPictureUrl = event.target.dataset.floraPictureUrl;
+
+    // Create a new image element for the popup picture
+    const popupImageElement = document.createElement("img");
+    popupImageElement.src = floraPictureUrl;
+    popupImageElement.style.maxWidth = "75%";
+    popupImageElement.style.maxHeight = "75%";
+
+    // Create the popup container element
+    const popupContainer = document.createElement("div");
+    popupContainer.id = "popupContainer";
+    popupContainer.style.position = "fixed";
+    popupContainer.style.top = "70%";
+    popupContainer.style.left = "50%";
+    popupContainer.style.transform = "translate(-35%, -50%)";
+    popupContainer.style.padding = "1px";
+    popupContainer.style.backgroundColor = "darkolivegreen";
+    popupContainer.style.zIndex = "9999";
+    popupContainer.appendChild(popupImageElement);
+
+    // Append the popup container to the document body
+    document.body.appendChild(popupContainer);
+
+    // Add event listener to close the popup when the mouse leaves the flora link
+    event.target.addEventListener("mouseleave", closePopupOnMouseLeave);
+
+    // Add event listener to close the popup when the mouse leaves the popup container
+    popupContainer.addEventListener("mouseleave", closePopupOnMouseLeave);
+}
+
+function closePopupOnMouseLeave(event) {
+    const popupContainer = document.getElementById("popupContainer");
+    if (popupContainer) {
+        popupContainer.remove();
+    }
 }

@@ -34,7 +34,7 @@
                 {% for i in object_range %}
                     {% if i == namespan %}
                         <td style="border-top: 1px solid black; border-bottom: 1px solid black; text-align: center; white-space: nowrap; overflow: visible; position: relative; display: flex; justify-content: center; align-items: center;">
-                            {{ flora.name }}
+                            <span class="flora-link" data-flora-name="{{ flora.name }}" data-flora-picture-url="{{ flora.picture_url }}">{{ flora.name }}</span>
                         </td>
                     {% else %}
                         <td {% if forloop.last %}style="border-right: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black;" {% endif %}
