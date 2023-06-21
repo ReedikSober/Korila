@@ -155,7 +155,13 @@ footer {
     text-align: center;
 }
 
-.success-message {
+div.forecast {
+    position:fixed;
+    z-index:9999;
+    bottom:5vh;
+    right:2%;
+
+  .success-message {
     position: fixed;
     top: 50%;
     left: 50%;
