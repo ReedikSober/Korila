@@ -1,4 +1,6 @@
+
 * {
+    box-sizing: border-box;
 
     background-color: darkolivegreen;
 
@@ -26,7 +28,10 @@
 }
 
 .linavright {
-    float: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .linava {
@@ -51,8 +56,12 @@
     color: gold;
 }
 
+.banner-link {
+    text-decoration: none;
+    color: floralwhite;
+}
+
 div.banner {
-    height: 14%;
     width: 99%;
     border: whitesmoke solid 3px;
     background: darkolivegreen url(https://images.unsplash.com/photo-1590273466070-40c466b4432d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHJlZXMlMjBpbiUyMGZvcmVzdHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80) no-repeat 0 34%;
@@ -61,7 +70,8 @@ div.banner {
 
 div.navigation {
     background-color: darkolivegreen;
-    height: max-content;
+    height: auto;
+    width: 99%;
     border: 3px solid whitesmoke;
     position: sticky;
     margin-right: 6px;
@@ -129,15 +139,16 @@ footer {
     display: none;
     /* Add other styles as needed */
 }
+
 .image-container {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .image-container img {
-  max-width: 50%;
-  max-height: 50%;
-  object-fit: contain;
+    max-width: 50%;
+    max-height: 50%;
+    object-fit: contain;
 }
 
 .center {
@@ -149,4 +160,51 @@ div.forecast {
     z-index:9999;
     bottom:5vh;
     right:2%;
+
+  .success-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+}
+
+th {
+    border-right: 1px solid black;
+}
+
+th:last-child {
+    border-right: none;
+}
+
+td:nth-child(4n) {
+    border-right: 1px solid black;
+}
+
+td:last-child {
+    border-right: none;
+}
+
+.bottomimage-container {
+    width: 100%;
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.bottomimage-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

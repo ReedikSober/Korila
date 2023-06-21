@@ -11,17 +11,25 @@
 <div class="banner">
     <h1 class="center transparent">Korila</h1>
 </div><!-- Navigation bar -->
+    <a href="/" class="banner-link">
+        <h1 class="center transparent">Korila</h1>
+    </a>
+</div>                  <!-- Navigation bar -->
 <div class="navigation">
     <ul class="menu">
-        <li class="linav"><a class="linava" href="/">Esileht</a></li>
         <li class="linav"><a class="linava" href="/uldinfo">Üldinfo</a></li>
         <li class="linav"><a class="linava" href="/kataloog">Kataloog</a></li>
         <li class="linav"><a class="linava" href="/kalender">Kalender</a></li>
         <li class="linav"><a class="linava" href="/taimed">Taimed</a></li>
         <li class="linav"><a class="linava" href="/marjad">Marjad</a></li>
         <li class="linav"><a class="linava" href="/seened">Seened</a></li>
-        <!-- User log-in and log-out changeable text -->
         <li class="linavright">
+            {% if request.path == '/kalender/' %}
+                <select style="margin-right: 20px" id="sort-select" onchange="storeSelectedOption(this)">
+                    <option value="name">Sort by Name</option>
+                    <option value="date" selected>Sort by Date</option>
+                </select>
+            {% endif %}
             {% if user.is_authenticated %}
                 <a class="linava " href="{% url 'logout' %}">Logi välja</a>
             {% else %}
@@ -41,6 +49,41 @@
                 <input id="searchInput" type="text" placeholder="Search..." required>
             </label>
             <button id="searchButton" type="button">Otsi</button>
+        </div>
+
+        <div id="weather">
+            <script src="{% static 'js/weather.js' %}"></script>
+            <h3 class="center">Weather forecast</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>days</th>
+                    <th>+1</th>
+                    <th>+2</th>
+                    <th>+3</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>avg.temp</td>
+                    <td id="avg1"></td>
+                    <td id="avg2"></td>
+                    <td id="avg3"></td>
+                </tr>
+                <tr>
+                    <td>avg.hum</td>
+                    <td id="hum1"></td>
+                    <td id="hum2"></td>
+                    <td id="hum3"></td>
+                </tr>
+                <tr>
+                    <td>min.temp</td>
+                    <td id="min1"></td>
+                    <td id="min2"></td>
+                    <td id="min3"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <main>
@@ -90,7 +133,7 @@
 <footer>
     2023 Korila
 </footer>
-<script src="{% static 'js/base.js' %}"></script>
+<script src="{% static 'js/popupwindow.js' %}"></script>
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from website.forms import UserSelectionForm
 from website.models import SignUpForm, Flora, UserSelection
@@ -66,19 +66,21 @@ def search_flora(request):
     search_input = request.GET.get('searchInput')
 
     # Perform the search query
-    flora_objects = Flora.objects.filter(name__icontains=search_input)
+    flora_objects = Flora.objects.filter(name__icontains=search_input) | Flora.objects.filter(
+        plant_category__exact=search_input)
 
     # Create a list of dictionaries containing the data for each flora object
     flora_data = []
     for flora in flora_objects:
         flora_data.append({
+            'id': flora.id,
             'name': flora.name,
             'harvest_start_month': flora.harvest_start_month,
             'harvest_start_week': flora.harvest_start_week,
             'harvest_end_month': flora.harvest_end_month,
             'harvest_end_week': flora.harvest_end_week,
             'plant_category': flora.plant_category,
-            'plant_description': flora.description,
+            'description': flora.description,
             'picture_url': flora.picture_url,
         })
 
@@ -86,4 +88,23 @@ def search_flora(request):
     return JsonResponse(flora_data, safe=False)
 
 
-#
+def add_to_calendar(request):
+    if request.method == 'POST':
+        flora_id = request.POST.get('floraId')
+        user = request.user
+        user_selection = get_object_or_404(UserSelection, user=user)
+        flora = get_object_or_404(Flora, id=flora_id)
+        user_selection.selected_plants.add(flora)
+        user_selection.save()
+        return JsonResponse({'success': True, 'message': 'Flora added to calendar'})
+
+
+def remove_from_calendar(request):
+    if request.method == 'POST':
+        flora_id = request.POST.get('floraId')
+        user = request.user
+        user_selection = get_object_or_404(UserSelection, user=user)
+        flora = get_object_or_404(Flora, id=flora_id)
+        user_selection.selected_plants.remove(flora)
+        user_selection.save()
+        return JsonResponse({'success': True, 'message': 'Flora removed from calendar'})
