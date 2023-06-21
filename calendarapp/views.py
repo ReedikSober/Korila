@@ -3,7 +3,6 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-
 from website.models import UserSelection
 
 
@@ -30,9 +29,6 @@ def refresh_table(request):
 def store_selected_option(request):
     selected_option = request.POST.get('selectedOption')
     request.session['selectedOption'] = selected_option  # Store the selected option in the session
-    user = request.user
-    user_selection = UserSelection.objects.get(user=user)
-    selected_flora = get_selected_flora(user_selection, selected_option)
     return JsonResponse({'message': 'Selected option received successfully'})
 
 
