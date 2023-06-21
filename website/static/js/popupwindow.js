@@ -42,8 +42,7 @@ function closePopupOnClick(event) {
 
     if (popup.style.display === "block" && !popupContent.contains(event.target) && !searchInput.contains(event.target)) {
         popup.style.display = "none";
-        reactivateFloraLinkClick();
-        reactivateFloraLinkHover();
+        reactivateFloraLinkEvent();
     }
 }
 
@@ -241,6 +240,7 @@ function refreshTable() {
                 const updatedTableContent = xhr.responseText;
                 const table = document.getElementById("calendarTable");
                 table.innerHTML = updatedTableContent;
+                reactivateFloraLinkEvent();
             } else {
                 console.error("Error: " + xhr.status);
             }
@@ -288,16 +288,11 @@ function handleFloraLinkClick(event) {
     xhr.send();
 }
 
-function reactivateFloraLinkClick() {
+
+function reactivateFloraLinkEvent() {
     const floraLinks = document.getElementsByClassName("flora-link");
     for (let i = 0; i < floraLinks.length; i++) {
         floraLinks[i].addEventListener("click", handleFloraLinkClick);
-    }
-}
-
-function reactivateFloraLinkHover() {
-    const floraLinks = document.getElementsByClassName("flora-link");
-    for (let i = 0; i < floraLinks.length; i++) {
         floraLinks[i].addEventListener("mouseover", handleFloraLinkHover);
     }
 }
@@ -309,16 +304,18 @@ function handleFloraLinkHover(event) {
     // Create a new image element for the popup picture
     const popupImageElement = document.createElement("img");
     popupImageElement.src = floraPictureUrl;
-    popupImageElement.style.maxWidth = "75%";
-    popupImageElement.style.maxHeight = "75%";
+    popupImageElement.style.maxWidth = "100%";
+    popupImageElement.style.maxHeight = "100%";
 
     // Create the popup container element
     const popupContainer = document.createElement("div");
     popupContainer.id = "popupContainer";
+    popupContainer.style.maxWidth = "100%";
+    popupContainer.style.maxHeight = "100%";
     popupContainer.style.position = "fixed";
-    popupContainer.style.top = "70%";
-    popupContainer.style.left = "50%";
-    popupContainer.style.transform = "translate(-35%, -50%)";
+    popupContainer.style.top = "1%";
+    popupContainer.style.left = "75%";
+    // popupContainer.style.transform = "translate(0%, -20%)";
     popupContainer.style.padding = "1px";
     popupContainer.style.backgroundColor = "darkolivegreen";
     popupContainer.style.zIndex = "9999";
@@ -340,3 +337,44 @@ function closePopupOnMouseLeave(event) {
         popupContainer.remove();
     }
 }
+
+// Retrieve the stored selected option on page load
+document.addEventListener('DOMContentLoaded', function () {
+    const selectElement = document.getElementById('sort-select');
+    const storedOption = sessionStorage.getItem('selectedOption');
+    if (storedOption) {
+        selectElement.value = storedOption;
+    } else {
+        selectElement.value = 'date'; // Set default value to "date" if no option is stored
+    }
+
+    // Send the selected option to the backend
+    storeSelectedOption(selectElement);
+
+});
+
+function storeSelectedOption(selectElement) {
+    const selectedOption = selectElement.value;
+    sessionStorage.setItem('selectedOption', selectedOption); // Store the selected option in session storage
+
+    const xhr = new XMLHttpRequest();
+    const url = "/sort-by-selection/";
+    const params = "selectedOption=" + encodeURIComponent(selectedOption);
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                refreshTable();
+            } else {
+                console.error("Error: " + xhr.status);
+            }
+        }
+    };
+
+    xhr.send(params);
+}
+
+const csrftoken = getCookie('csrftoken');

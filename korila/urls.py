@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from django.urls import include, path
 from website import views
@@ -19,6 +18,7 @@ urlpatterns = [
     path('add-to-calendar/', views.add_to_calendar, name='add-to-calendar'),
     path('remove-from-calendar/', views.remove_from_calendar, name='remove-from-calendar'),
     path('refresh-table/', cviews.refresh_table, name='refresh-table'),
+    path('sort-by-selection/', cviews.store_selected_option, name='store-selected-option'),
 
     # path('contact/', views.contact, name='contact'),
 
