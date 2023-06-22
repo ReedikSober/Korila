@@ -6,10 +6,10 @@ from django.contrib.auth.forms import UserCreationForm
 
 class Flora(models.Model):  # database of plants
     categories = [
-        ('taim', 'taim'),
-        ('seen', 'seen'),
-        ('mari', 'mari'),
-        ('muu', 'muu'),
+        ('Plants', 'Plants'),
+        ('Mushrooms', 'Mushrooms'),
+        ('Berries', 'Berries'),
+        ('Other', 'Other'),
     ]
     MONTH_CHOICES = [
         (1, 'January'),
