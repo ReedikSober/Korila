@@ -42,17 +42,38 @@ def signup(request):
     return render(request, 'registration/signup.html', {'form': form})
 
 
+from django.http import JsonResponse
+
+
 @login_required
 def plant_list(request):
     plants = Flora.objects.all()
     user = request.user
 
-    if request.method == 'POST':
+    if request.method == 'POST' and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         form = UserSelectionForm(request.POST)
         if form.is_valid():
             user_selection, created = UserSelection.objects.get_or_create(user=user)
-            user_selection.selected_plants.set(form.cleaned_data['selected_plants'])
-            messages.success(request, 'Selection saved successfully.')
+
+            # Get the current selected plants
+            selected_plants = user_selection.selected_plants.all()
+
+            # Get the list of selected plants from the form
+            form_selected_plants = form.cleaned_data['selected_plants']
+
+            # Add new selected plants to the existing ones
+            for plant in form_selected_plants:
+                if plant not in selected_plants:
+                    user_selection.selected_plants.add(plant)
+
+            # Remove deselected plants from the existing ones
+            for plant in selected_plants:
+                if plant not in form_selected_plants:
+                    user_selection.selected_plants.remove(plant)
+
+            return JsonResponse({'message': 'Selection updated successfully.'})
+        else:
+            return JsonResponse({'message': 'Invalid form data.'}, status=400)
 
     else:
         user_selection, created = UserSelection.objects.get_or_create(user=user)

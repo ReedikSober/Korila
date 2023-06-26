@@ -1,13 +1,8 @@
 from django import forms
 from .models import Flora, UserSelection
 
-class UserSelectionForm(forms.ModelForm):
-    selected_plants = forms.ModelMultipleChoiceField(
-        queryset=Flora.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
-        required=False
-    )
 
+class UserSelectionForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UserSelectionForm, self).__init__(*args, **kwargs)
         # Group selected plants by categories
@@ -19,11 +14,22 @@ class UserSelectionForm(forms.ModelForm):
                 grouped_plants[category] = []
             grouped_plants[category].append(plant)
 
-        # Update the widget choices to include category headings
-        new_widget_choices = []
-        for category, plants in grouped_plants.items():
-            new_widget_choices.append((category, [(plant.pk, str(plant)) for plant in plants]))
-        self.fields['selected_plants'].widget.choices = new_widget_choices
+        # Sort plants within each category alphabetically
+        for plants in grouped_plants.values():
+            plants.sort(key=lambda x: str(x))
+
+            # Define the desired order of the groups
+            desired_order = ['Plants', 'Berries', 'Mushrooms', 'Other']  # Customize the order as per your requirements
+
+            # Update the choices of the existing selected_plants field
+            new_widget_choices = []
+            for category in desired_order:
+                if category in grouped_plants:
+                    plants = grouped_plants[category]
+                    plants_choices = [(plant.pk, str(plant)) for plant in plants]
+                    new_widget_choices.append((category, plants_choices))
+
+            self.fields['selected_plants'].choices = new_widget_choices
 
     class Meta:
         model = UserSelection
