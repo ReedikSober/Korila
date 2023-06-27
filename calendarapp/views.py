@@ -7,21 +7,18 @@ from website.models import UserSelection
 
 
 @login_required
-def user_flora(request):
+def calendar(request):
     user = request.user
     user_selection = UserSelection.objects.get(user=user)
     sort_option = request.session.get('selectedOption')  # Retrieve the selected sort option from session
     selected_flora = get_selected_flora(user_selection, sort_option)
-    return render(request, 'kalender.html', {'selected_flora': selected_flora})
 
+    if request.path == '/calendar/':
+        template_name = 'calendar.html'
+    elif request.path == '/refresh-table/':
+        template_name = 'refresh_table.html'
 
-@login_required
-def refresh_table(request):
-    user = request.user
-    user_selection = UserSelection.objects.get(user=user)
-    sort_option = request.session.get('selectedOption')  # Retrieve the selected sort option from session
-    selected_flora = get_selected_flora(user_selection, sort_option)
-    return render(request, 'refresh-table.html', {'selected_flora': selected_flora})
+    return render(request, template_name, {'selected_flora': selected_flora})
 
 
 @csrf_exempt

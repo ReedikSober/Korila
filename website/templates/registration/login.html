@@ -1,15 +1,16 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}
-    Sisselogimine
+    Login
 {% endblock %}
 
 {% block content %}
-    <h2>Sisselogimine</h2>
+    <h2>{% translate Login %}</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Sisselogimine</button>
-        <p><a href="{% url 'password_reset' %}">Unustasid salasõna?</a></p>
+        <button type="submit">{% translate "Login" %}</button>
+        <p><a href="{% url 'password_reset' %}">{% translate "Forgot your password?" %}</a></p>
     </form>
 {% endblock %}

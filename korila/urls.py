@@ -6,20 +6,16 @@ from calendarapp import views as cviews
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
-    path('', views.esileht, name='esileht'),
-    path('uldinfo/', views.uldinfo, name='uldinfo'),
-    path('seened/', views.seened, name='seened'),
-    path('marjad/', views.marjad, name='marjad'),
-    path('taimed/', views.taimed, name='taimed'),
+    path('', views.home, name='home'),
+    path('general/', views.general, name='general'),
     path('signup/', views.signup, name='signup'),
-    path('kataloog/', views.plant_list, name='plant_list'),
-    path('kalender/', cviews.user_flora, name='user_flora'),
+    path('catalogue/', views.plant_list, name='plant_list'),
     path('search/', views.search_flora, name='search_flora'),
     path('add-to-calendar/', views.add_to_calendar, name='add-to-calendar'),
     path('remove-from-calendar/', views.remove_from_calendar, name='remove-from-calendar'),
-    path('refresh-table/', cviews.refresh_table, name='refresh-table'),
+    path('calendar/', cviews.calendar, name='user_flora'),
+    path('refresh-table/', cviews.calendar, name='refresh-table'),
     path('sort-by-selection/', cviews.store_selected_option, name='store-selected-option'),
-
-    # path('contact/', views.contact, name='contact'),
+    path('toggle-language/<str:language_code>/', views.toggle_language, name='toggle_language'),
 
 ]

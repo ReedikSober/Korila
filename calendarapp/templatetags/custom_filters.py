@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from django.utils.translation import gettext as _
 from django import template
 
 register = template.Library()
@@ -17,7 +17,10 @@ def multiply(value, arg):
 
 @register.filter
 def month_name(month_number):
-    return datetime.strptime(str(month_number), "%m").strftime("%B")
+    month_str = str(month_number)
+    month_date = datetime.strptime(month_str, "%m")
+    translated_month = month_date.strftime("%b")  # Get the month abbreviation
+    return _(translated_month)
 
 
 @register.simple_tag

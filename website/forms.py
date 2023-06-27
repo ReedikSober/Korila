@@ -1,5 +1,6 @@
 from django import forms
 from .models import Flora, UserSelection
+from django.utils.translation import gettext_lazy as _
 
 
 class UserSelectionForm(forms.ModelForm):
@@ -27,7 +28,7 @@ class UserSelectionForm(forms.ModelForm):
                 if category in grouped_plants:
                     plants = grouped_plants[category]
                     plants_choices = [(plant.pk, str(plant)) for plant in plants]
-                    new_widget_choices.append((category, plants_choices))
+                    new_widget_choices.append((_(category), plants_choices))
 
             self.fields['selected_plants'].choices = new_widget_choices
 

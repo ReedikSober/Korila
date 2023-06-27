@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Kõik taimed{% endblock %}
+{% block title %}All Flora{% endblock %}
 
 {% block content %}
     <style>
@@ -22,9 +22,6 @@
             width: 100%;
         }
 
-        /* Add your own styles for checkbox-list, h3, and other elements as needed */
-
-        /* Example styles */
         .checkbox-list {
             list-style-type: none;
             padding: 0;
@@ -66,7 +63,7 @@
         // Listen for changes in checkboxes
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', (event) => {
+            checkbox.addEventListener('change', () => {
                 // Get all the selected checkbox values
                 const selectedValues = Array.from(checkboxes)
                     .filter(checkbox => checkbox.checked)
