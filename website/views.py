@@ -2,29 +2,21 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
+from django.utils import translation
+from django.utils.translation import get_language
+
 from website.forms import UserSelectionForm
 from website.models import SignUpForm, Flora, UserSelection
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
 
 
-def esileht(request):
-    return render(request, 'esileht.html')
+def home(request):
+    return render(request, 'home.html')
 
 
-def uldinfo(request):
-    return render(request, 'uldinfo.html')
-
-
-def seened(request):
-    return render(request, 'content_files/seened.html')
-
-
-def marjad(request):
-    return render(request, 'content_files/marjad.html')
-
-
-def taimed(request):
-    return render(request, 'content_files/taimed.html')
+def general(request):
+    return render(request, 'general.html')
 
 
 def signup(request):
@@ -80,7 +72,7 @@ def plant_list(request):
         initial_data = {'selected_plants': user_selection.selected_plants.all()}
         form = UserSelectionForm(initial=initial_data)
 
-    return render(request, 'kataloog.html', {'plants': plants, 'form': form})
+    return render(request, 'catalogue.html', {'plants': plants, 'form': form})
 
 
 def search_flora(request):
@@ -129,3 +121,17 @@ def remove_from_calendar(request):
         user_selection.selected_plants.remove(flora)
         user_selection.save()
         return JsonResponse({'success': True, 'message': 'Flora removed from calendar'})
+
+
+def toggle_language(request, language_code):
+    # Set the desired language as the active language
+    translation.activate(language_code)
+
+    # Store the language preference in the user's session
+    request.session['django_language'] = language_code
+
+    # Set the language preference as a cookie
+    response = HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    response.set_cookie('django_language', language_code)
+
+    return response

@@ -298,7 +298,7 @@ function reactivateFloraLinkEvent() {
 }
 
 function handleFloraLinkHover(event) {
-    const floraName = event.target.textContent;
+    // const floraName = event.target.textContent;
     const floraPictureUrl = event.target.dataset.floraPictureUrl;
 
     // Create a new image element for the popup picture
@@ -331,7 +331,7 @@ function handleFloraLinkHover(event) {
     popupContainer.addEventListener("mouseleave", closePopupOnMouseLeave);
 }
 
-function closePopupOnMouseLeave(event) {
+function closePopupOnMouseLeave() {
     const popupContainer = document.getElementById("popupContainer");
     if (popupContainer) {
         popupContainer.remove();

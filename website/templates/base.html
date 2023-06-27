@@ -1,11 +1,13 @@
 {% load static %}
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Korila</title>
     <link rel="icon" type="image/x-icon" href="https://cnz.to/vf/wp-content/uploads/2008/07/fresh_greens.jpg">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
 <div class="banner">
@@ -16,24 +18,32 @@
 <!-- Navigation bar -->
 <div class="navigation">
     <ul class="menu">
-        <li class="linav"><a class="linava" href="/uldinfo">Üldinfo</a></li>
-        <li class="linav"><a class="linava" href="/kataloog">Kataloog</a></li>
-        <li class="linav"><a class="linava" href="/kalender">Kalender</a></li>
-        <li class="linav"><a class="linava" href="/taimed">Taimed</a></li>
-        <li class="linav"><a class="linava" href="/marjad">Marjad</a></li>
-        <li class="linav"><a class="linava" href="/seened">Seened</a></li>
+        <li class="linav"><a class="linava" href="/general">{% translate "General" %}</a></li>
+        <li class="linav"><a class="linava" href="/catalogue">{% translate "Catalogue" %}</a></li>
+        <li class="linav"><a class="linava" href="/calendar">{% translate "Calendar" %}</a></li>
         <li class="linavright">
-            {% if request.path == '/kalender/' %}
-                <select style="margin-right: 20px" id="sort-select" onchange="storeSelectedOption(this)">
-                    <option value="name">Sort by Name</option>
-                    <option value="date" selected>Sort by Date</option>
+            {% if request.path == '/calendar/' %}
+                <select class="select-container" id="sort-select" onchange="storeSelectedOption(this)">
+                    <option value="name">{% translate "Sort Alphabetically" %}</option>
+                    <option value="date" selected>{% translate "Sort Chronologically" %}</option>
                 </select>
             {% endif %}
+
+            {% if language_code == 'et' %}
+                <a href="{% url 'toggle_language' language_code='en' %}">
+                    <img class="language-flag" src="{% static 'img/en.png' %}" alt="English Flag">
+                </a>
+            {% elif language_code == 'en' %}
+                <a href="{% url 'toggle_language' language_code='et' %}">
+                    <img class="language-flag" src="{% static 'img/et.png' %}" alt="Estonian Flag">
+                </a>
+            {% endif %}
+
             {% if user.is_authenticated %}
-                <a class="linava " href="{% url 'logout' %}">Logi välja</a>
+                <a class="linava " href="{% url 'logout' %}">{% translate "Logout" %}</a>
             {% else %}
-                <a class="linava " href="{% url 'signup' %}">Registreeri</a>
-                <a class="linava " href="{% url 'login' %}">Logi sisse</a>
+                <a class="linava " href="{% url 'signup' %}">{% translate "Register" %}</a>
+                <a class="linava " href="{% url 'login' %}">{% translate "Login" %}</a>
             {% endif %}
         </li>
     </ul>
@@ -42,13 +52,13 @@
 <div class="container">
     <div class="sidebar">
         <div class="text transparent center">
-            Sisesta otsitava taime nimi
+            {% translate "Lookup from Catalogue" %}
         </div>
         <div class="searchbar center">
             <label for="searchInput">
-                <input id="searchInput" type="text" placeholder="Search..." required>
+                <input id="searchInput" type="text" placeholder={% translate "Search..." %} required>
             </label>
-            <button id="searchButton" type="button">Otsi</button>
+            <button id="searchButton" type="button">{% translate "Search" %}</button>
         </div>
     </div>
 
