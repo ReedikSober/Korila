@@ -66,6 +66,9 @@ div.banner {
     border: whitesmoke solid 3px;
     background: darkolivegreen url(https://images.unsplash.com/photo-1590273466070-40c466b4432d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHJlZXMlMjBpbiUyMGZvcmVzdHxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80) no-repeat 0 34%;
     background-size: cover;
+    font-size: large;
+    font-family: "Verdana", serif;
+    position: relative;
 }
 
 div.navigation {
@@ -75,11 +78,6 @@ div.navigation {
     border: 3px solid whitesmoke;
     position: sticky;
     margin-right: 6px;
-}
-
-.banner {
-    font-size: large;
-    font-family: "Verdana", serif;
 }
 
 .container {
@@ -222,4 +220,24 @@ td:last-child {
 
 .language-flag {
     margin-right: 20px;
+}
+
+#welcome-message {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: initial;
+    font-family: initial;
+    background: transparent;
+
+}
+
+#welcome-message .user-name {
+    font-size: inherit;
+    font-family: inherit;
+    background: transparent;
+}
+
+#welcome-message .user-name .user-placeholder {
+        background: transparent;
 }

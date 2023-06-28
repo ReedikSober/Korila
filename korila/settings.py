@@ -58,6 +58,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'korila.context_processors.language_code',
+                'korila.context_processors.user_name',
             ],
         },
     },

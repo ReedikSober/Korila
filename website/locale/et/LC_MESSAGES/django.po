@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 12:46+0300\n"
+"POT-Creation-Date: 2023-06-28 11:48+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1237,48 +1237,52 @@ msgstr ""
 msgid "Connect, get help, or contribute"
 msgstr ""
 
-#: .\website\templates\base.html:21
+#: .\website\templates\base.html:18
+msgid "Welcome, "
+msgstr "Tervist, "
+
+#: .\website\templates\base.html:24
 msgid "General"
 msgstr "Uldine"
 
-#: .\website\templates\base.html:22
+#: .\website\templates\base.html:25
 msgid "Catalogue"
 msgstr "Kataloog"
 
-#: .\website\templates\base.html:23
+#: .\website\templates\base.html:26
 msgid "Calendar"
 msgstr "Kalender"
 
-#: .\website\templates\base.html:27
+#: .\website\templates\base.html:30
 msgid "Sort Alphabetically"
 msgstr "Järjesta tähestikuliselt "
 
-#: .\website\templates\base.html:28
+#: .\website\templates\base.html:31
 msgid "Sort Chronologically"
 msgstr "Järjesta kronoloogiliselt "
 
-#: .\website\templates\base.html:43
+#: .\website\templates\base.html:46
 msgid "Logout"
 msgstr "Välju"
 
-#: .\website\templates\base.html:45
+#: .\website\templates\base.html:48
 msgid "Register"
 msgstr "Registreeri"
 
-#: .\website\templates\base.html:46
+#: .\website\templates\base.html:49
 #: .\website\templates\registration\login.html:13
 msgid "Login"
 msgstr "Sisene"
 
-#: .\website\templates\base.html:55
+#: .\website\templates\base.html:58
 msgid "Lookup from Catalogue"
 msgstr "Otsi Kataloogist"
 
-#: .\website\templates\base.html:59
+#: .\website\templates\base.html:62
 msgid "Search..."
 msgstr "Otsi..."
 
-#: .\website\templates\base.html:61
+#: .\website\templates\base.html:64
 msgid "Search"
 msgstr "Otsi"
 
