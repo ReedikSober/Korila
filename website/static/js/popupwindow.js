@@ -39,11 +39,29 @@ function closePopupOnClick(event) {
     const popup = document.getElementById("popup");
     const popupContent = document.getElementById("popupContent");
     const searchInput = document.getElementById("searchInput");
+    const closeIcon = document.getElementById("closeIcon");
 
-    if (popup.style.display === "block" && !popupContent.contains(event.target) && !searchInput.contains(event.target)) {
+    if (
+        (popup.style.display === "block" && event.target !== popupContent && !popupContent.contains(event.target) && !searchInput.contains(event.target))
+        || event.target === closeIcon
+    ) {
         popup.style.display = "none";
         reactivateFloraLinkEvent();
     }
+}
+
+function createCloseIcon() {
+    const closeIcon = document.createElement("div");
+    closeIcon.id = "closeIcon";
+    closeIcon.className = "close-icon";
+
+    // Set the background image using JavaScript
+    closeIcon.style.background = "url('/static/img/close.png') no-repeat center center";
+    closeIcon.style.backgroundSize = "cover";
+
+    // Add event listener to close the popup when the close icon is clicked
+    closeIcon.addEventListener("click", closePopupOnClick);
+    return closeIcon;
 }
 
 function closePopupOnEscape(event) {
@@ -65,6 +83,8 @@ function displayPopup(data) {
 
     showPopup();
     addScrollbarIfNeeded();
+    const closeIcon = createCloseIcon();
+    popupContent.appendChild(closeIcon);
 }
 
 function displayNoResults() {

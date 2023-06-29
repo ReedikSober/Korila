@@ -349,3 +349,15 @@ div.catalogue h3 {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
 }
+
+.close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
