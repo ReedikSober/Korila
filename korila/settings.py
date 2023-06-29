@@ -122,9 +122,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'website/static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = '/website/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'website/media')
-
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
@@ -132,8 +129,8 @@ EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
 
 LANGUAGES = [
-    ("en", ("English")),
-    ("et", ("Estonian")),
+    ("en", "English"),
+    ("et", "Estonian"),
 ]
 
 LOCALE_PATHS = [

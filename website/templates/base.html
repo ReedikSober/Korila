@@ -15,7 +15,8 @@
         <h1 class="center transparent">Korila</h1>
     </a>
     <div id="welcome-message">
-        <span class="user-name">{% translate "Welcome, "%} <span class="user-placeholder">{{ user_name }}!</span></span>
+        <span class="user-name">{% translate "Welcome, " %} <span
+                class="user-placeholder">{{ user_name }}!</span></span>
     </div>
 </div>
 <!-- Navigation bar -->
@@ -33,7 +34,7 @@
             {% endif %}
 
             {% if language_code == 'et' %}
-                <a href="{% url 'toggle_language' language_code='en' %}">
+                <a class="flag" href="{% url 'toggle_language' language_code='en' %}">
                     <img class="language-flag" src="{% static 'img/en.png' %}" alt="English Flag">
                 </a>
             {% elif language_code == 'en' %}
@@ -58,10 +59,12 @@
             {% translate "Lookup from Catalogue" %}
         </div>
         <div class="searchbar center">
-            <label for="searchInput">
-                <input id="searchInput" type="text" placeholder={% translate "Search..." %} required>
+            <label for="searchInput" class="search-input-container">
+                <input id="searchInput" type="text" placeholder="{% translate 'Search...' %}">
+                <button id="searchButton" type="button" class="search-icon" aria-label="Search">
+                    <img src="{% static 'img/search.png' %}">
+                </button>
             </label>
-            <button id="searchButton" type="button">{% translate "Search" %}</button>
         </div>
     </div>
 

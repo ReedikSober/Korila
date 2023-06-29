@@ -1,96 +1,39 @@
 {% extends "base.html" %}
+{% load static %}
+
 
 {% block title %}All Flora{% endblock %}
 
 {% block content %}
-    <style>
-        .row::after {
-            content: " ";
-            clear: both;
-            display: table;
-            width: 100%;
-        }
-
-        .column {
-            float: left;
-            width: 25%;
-            padding: 10px;
-        }
-
-        main {
-            display: block;
-            width: 100%;
-        }
-
-        .checkbox-list {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        h3 {
-            margin-top: 0;
-        }
-    </style>
-    <form method="post">
-        {% csrf_token %}
-        <div class="row">
-            {% for category, plants in form.selected_plants.field.choices %}
-                <div class="column">
-                    <h3>{{ category }}</h3>
-                    <ul class="checkbox-list">
-                        {% for plant in plants %}
-                            <li>
-                                <label>
-                                    <input type="checkbox" name="{{ form.selected_plants.html_name }}"
-                                           value="{{ plant.0 }}"
-                                           {% if plant.0 in form.selected_plants.value %}checked{% endif %}>
-                                    <span class="flora-link" data-flora-name="{{ plant.1 }}"
-                                          data-flora-picture-url="{{ plant.2 }}">{{ plant.1 }}</span>
-                                </label>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                {% if forloop.counter|divisibleby:4 and not forloop.last %}
+    <div class="catalogue">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                {% for category, plants in form.selected_plants.field.choices %}
+                    <div class="column">
+                        <h3>{{ category }}</h3>
+                        <ul class="checkbox-list">
+                            {% for plant in plants %}
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="{{ form.selected_plants.html_name }}"
+                                               value="{{ plant.0 }}"
+                                               {% if plant.0 in form.selected_plants.value %}checked{% endif %}>
+                                        <span class="flora-link" data-flora-name="{{ plant.1 }}"
+                                              data-flora-picture-url="{{ plant.2 }}">{{ plant.1 }}</span>
+                                    </label>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </div>
-                    <div class="row">
-                {% endif %}
-            {% endfor %}
-            </div>
-    </form>
-
-    <script>
-        // Listen for changes in checkboxes
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', () => {
-                // Get all the selected checkbox values
-                const selectedValues = Array.from(checkboxes)
-                    .filter(checkbox => checkbox.checked)
-                    .map(checkbox => checkbox.value);
-
-                // Send an asynchronous request to update the database
-                const formData = new FormData();
-                selectedValues.forEach(value => {
-                    formData.append('selected_plants', value);
-                });
-                formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
-
-                fetch('{% url 'plant_list' %}', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest',
-                    },
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data);
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-            });
-        });
-    </script>
+                    {% if forloop.counter|divisibleby:4 and not forloop.last %}
+                        </div>
+                        <div class="row">
+                    {% endif %}
+                {% endfor %}
+                </div>
+        </form>
+    </div>
+    <input type="hidden" id="csrf-token" value="{{ csrf_token }}">
+    <script src="{% static 'js/catalogue.js' %}"></script>
 {% endblock %}
