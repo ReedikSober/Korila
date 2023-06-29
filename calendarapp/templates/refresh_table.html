@@ -30,15 +30,14 @@
 
             {% for i in object_range %}
                 {% if i == namespan %}
-                    <td style="border-top: 1px solid black; border-bottom: 1px solid black; text-align: center; white-space: nowrap; overflow: visible; position: relative; display: flex; justify-content: center; align-items: center;">
-                        <span class="flora-link" data-flora-name="{{ flora.name }}"
-                              data-flora-picture-url="{{ flora.picture_url }}">{{ flora.name }}</span>
+                    <td class="cell-flora">
+                            <span class="flora-link" data-flora-name="{{ flora.name }}"
+                                  data-flora-picture-url="{{ flora.picture_url }}">{{ flora.name }}</span>
                     </td>
                 {% else %}
-                    <td {% if forloop.last %}style="border-right: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black;" {% endif %}
-                        {% if forloop.first %}style="border-left: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black;" {% endif %}
-                        style="border-top: 1px solid black; border-bottom: 1px solid black;">
-                    </td>
+                    <td {% if forloop.last %}class="cell-border-right"{% endif %}
+                        {% if forloop.first %}class="cell-border-left"{% endif %}
+                        class="cell-empty"></td>
                 {% endif %}
             {% endfor %}
 
