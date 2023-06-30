@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load i18n %}
 
 {% block title %}All Flora{% endblock %}
 
 {% block content %}
+    <h2 class="catalogue-header">{% translate "Select and see in your calendar!" %}</h2>
     <div class="catalogue">
         <form method="post">
             {% csrf_token %}
@@ -12,8 +13,8 @@
                 {% for category, plants in form.selected_plants.field.choices %}
                     <div class="column">
                         <h3>{{ category }}</h3>
-                        <button type="button" class="add-all-btn" data-category="{{ category }}">Add
-                            all</button>
+                        <button type="button" class="add-all-btn" data-category="{{ category }}">{% translate "Add all" %}
+                        </button>
                         <ul class="checkbox-list">
                             {% for plant in plants %}
                                 <li>

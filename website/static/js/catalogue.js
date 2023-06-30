@@ -1,9 +1,13 @@
 // Function to update the database asynchronously
 function updateDatabase(selectedValues) {
     const formData = new FormData();
-    selectedValues.forEach(value => {
-        formData.append('selected_plants', value);
-    });
+    if (selectedValues.length > 0) {
+        selectedValues.forEach(value => {
+            formData.append('selected_plants', value);
+        });
+    } else {
+        formData.append('selected_plants', '0'); // Placeholder value
+    }
     const csrfToken = document.querySelector('#csrf-token').value;
     formData.append('csrfmiddlewaretoken', csrfToken);
     fetch('/catalogue/', {
