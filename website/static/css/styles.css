@@ -361,3 +361,6 @@ div.catalogue h3 {
     cursor: pointer;
 }
 
+.catalogue-header {
+    text-align: center;
+}
