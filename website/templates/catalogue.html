@@ -12,13 +12,16 @@
                 {% for category, plants in form.selected_plants.field.choices %}
                     <div class="column">
                         <h3>{{ category }}</h3>
+                        <button type="button" class="add-all-btn" data-category="{{ category }}">Add
+                            all</button>
                         <ul class="checkbox-list">
                             {% for plant in plants %}
                                 <li>
                                     <label>
                                         <input type="checkbox" name="{{ form.selected_plants.html_name }}"
                                                value="{{ plant.0 }}"
-                                               {% if plant.0 in form.selected_plants.value %}checked{% endif %}>
+                                               {% if plant.0 in form.selected_plants.value %}checked{% endif %}
+                                               data-category="{{ category }}">
                                         <span class="flora-link" data-flora-name="{{ plant.1 }}"
                                               data-flora-picture-url="{{ plant.2 }}">{{ plant.1 }}</span>
                                     </label>
