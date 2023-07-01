@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}"General"{% endblock %}
+
+{% block content %}
+    <div class="header">
+    <h1>Korila</h1>
+    </div>
+    <div class="introduction">
+    <p>
+        {% translate "Korila is a project we wrote as a final project for our Software Development Academy course." %}<br>
+        {% translate "Why Korila?" %}<br>
+        {% translate "Korila comes from the word korilus (Wildcrafting), and for both of us it means an important part of our roots - getting food and useables from nature. It was one of the most important ways of life in the lives of our ancestors and it continues to be strong in Estonians' chests to this day." %}<br>
+        {% translate "We hope this page will inspire you to get more involved in foraging. Or, if you have enough knowledge, maybe you'd like to bring friends or guests along from time to time to share your knowledge with others and keep a worthy tradition alive." %}<br>
+        {% translate "If you have any ideas for developing the website, or if you happen to have a book on foraging gathering dust on your bookshelf that could be of use to us, please feel free to write. You can find our contact details here." %}<br>
+        {% translate "Good luck foraging!" %}
+    </p>
+    </div>
+    <div class="contacts">
+    <p>
+        Reedik Sõber, e-mail: reedik.sober@gmail.com <br>
+        Marje Avik, e-mail: marjeavik@gmail.com
+    </p>
+    </div>
+{% endblock %}

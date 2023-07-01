@@ -1257,10 +1257,6 @@ msgstr ""
 msgid "Welcome, "
 msgstr "Tervist, "
 
-#: .\website\templates\base.html:25
-msgid "General"
-msgstr "Üldine"
-
 #: .\website\templates\base.html:26
 msgid "Catalogue"
 msgstr "Kataloog"
@@ -1417,3 +1413,53 @@ msgstr "Seened"
 
 msgid "Other"
 msgstr "Muu"
+
+msgid ""
+"Korila is a project we wrote as a final project for our Software Development Academy course."
+msgstr ""
+"Korila on meie projekt, mille kirjutasime Software Development Academy kursuse lõputööna."
+
+msgid ""
+"Why Korila?"
+msgstr ""
+"Miks just Korila?"
+
+msgid ""
+"Korila comes from the word korilus (Wildcrafting), and for both of us it means an important part of our roots - getting food and useables from nature. It was one of the most important ways of life in the lives of our ancestors and it continues to be strong in Estonians' chests to this day."
+msgstr ""
+"Korila tuleb sõnast korilus ja tähendab meile mõlemale üht tähtsat osa meie juurtest -toidu ja tarbeesemete hankimist loodusest. See oli üks tähtsamaid eluviise meie esivanemate elus mis jätkub siiani tugevalt eestlaste rinnus."
+
+msgid ""
+"We hope this page will inspire you to get more involved in foraging. Or, if you have enough knowledge, maybe you'd like to bring friends or guests along from time to time to share your knowledge with others and keep a worthy tradition alive."
+msgstr ""
+"Me loodame, et see lehekülg innustab sind rohkem korilusega tegelema. Või kui on teadmisi piisavalt, siis äkki sõpru või külalisi teinekord endaga kaasa haaraama, et ka teistele oma teadmisi jagada ja üht auväärset traditsiooni elus hoida."
+
+msgid ""
+"If you have any ideas for developing the website, or if you happen to have a book on foraging gathering dust on your bookshelf that could be of use to us, please feel free to write. You can find our contact details here."
+msgstr ""
+"Kui tuleb mõtteid veebilehe arendamiseks või on sul äkki raamaturiiulis mõni koriluse teemaline raamat tolmu korjamas, milles olevas infost võiks meile kasu olla, siis kirjuta julgelt. Meie kontaktid leiad siit."
+
+msgid ""
+"Good luck foraging!"
+msgstr ""
+"Edukat korilust!"
+
+msgid ""
+"Welcome to Korila!"
+msgstr ""
+"Tere tulemast Korilasse!"
+
+msgid ""
+"Korila is your little helper in the world of wildcrafting."
+msgstr ""
+"Korila on sinu väike abimees koriluse maailmas."
+
+msgid ""
+"Here you may find a catalogue of flora native to Estonian nature, which you may add into your very own personal calendar."
+msgstr ""
+"Siit leiad Eesti looduses levinud taimestiku kataloogi, mille võid lisada oma isiklikku kalendrisse."
+
+msgid ""
+"Take a look!"
+msgstr ""
+"Vaatake järele!"

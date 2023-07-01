@@ -253,7 +253,9 @@ td:last-child {
     display: flex;
     width: max-content;
     float: left;
-    text-align-last: center
+    text-align-last: center;
+    justify-content: flex-end;
+
 }
 .weather a{
     padding: 2px;
