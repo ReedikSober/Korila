@@ -246,20 +246,19 @@ td:last-child {
     height: 100%;
     object-fit: cover;
 }
-
-.forecast {
-    position: fixed;
-    z-index: 9999;
-    bottom: 5vh;
-    right: 2%;
-    flex: 1;
-    margin-left: 20px;
-    width: 20%;
-}
-
-
 .select-container {
     margin-right: 20px;
+}
+.weather {
+    display: flex;
+    width: max-content;
+    float: left;
+    text-align-last: center
+}
+.weather a{
+    padding: 2px;
+    width: unset;
+    text-align: left;
 }
 
 .flag {
