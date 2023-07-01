@@ -25,11 +25,11 @@
         <li class="linav"><a class="linava" href="/general">{% translate "General" %}</a></li>
         <li class="linav"><a class="linava" href="/catalogue">{% translate "Catalogue" %}</a></li>
         <li class="linav"><a class="linava" href="/calendar">{% translate "My Calendar" %}</a></li>
-        <li class="linavright">
         <div class="weather">
             <script src="{% static 'js/weather.js' %}"></script>
             <li id="weatherList"></li>
         </div>
+        <li class="linavright">
             {% if request.path == '/calendar/' %}
                 <select class="select-container" id="sort-select" onchange="storeSelectedOption(this)">
                     <option value="name">{% translate "Sort Alphabetically" %}</option>
@@ -48,7 +48,7 @@
             {% endif %}
 
             {% if user.is_authenticated %}
-                <a class="linava " href="{% url 'logout' %}">{% translate "Logout" %}</a>
+                <a class="linava" href="{% url 'logout' %}">{% translate "Logout" %}</a>
             {% else %}
                 <a class="linava " href="{% url 'signup' %}">{% translate "Register" %}</a>
                 <a class="linava " href="{% url 'login' %}">{% translate "Login" %}</a>
