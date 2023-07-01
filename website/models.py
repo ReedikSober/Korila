@@ -47,7 +47,7 @@ class Flora(models.Model):  # database of plants
 
 class UserSelection(models.Model):  # many-to-many table to represent user choice from fauna list
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    selected_plants = models.ManyToManyField(Flora, null=True)
+    selected_plants = models.ManyToManyField(Flora)
 
     def __str__(self):
         return self.user.username
