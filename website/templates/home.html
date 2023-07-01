@@ -1,8 +1,14 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}Home{% endblock %}
 
 
 {% block content %}
-
+    <h3>{% translate "Welcome to Korila!" %}</h3>
+    <p>
+        {% translate "Korila is your little helper in the world of wildcrafting." %}<br>
+        {% translate "Here you may find a catalogue of flora native to Estonian nature, which you may add into your very own personal calendar." %}<br>
+        {% translate "Take a look!" %}
+    </p>
 {% endblock %}

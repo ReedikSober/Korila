@@ -15,8 +15,8 @@ def home(request):
     return render(request, 'home.html')
 
 
-def general(request):
-    return render(request, 'general.html')
+def about(request):
+    return render(request, 'about.html')
 
 
 def signup(request):
